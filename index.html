@@ -5,37 +5,60 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kush Vapiwala — Portfolio / Resume</title>
   <style>
-    :root{--accent:#8B1A1A;--bg:#fff6f6;--card:#fff;--muted:#6b2f2f}
+    :root{--accent:#e74c3c;--accent-soft:#7b1e1e;--bg:#09070f;--surface:#13131a;--surface-soft:#171622;--card:#1d1b24;--text:#f5f3f7;--muted:#9a8b92;--border:#361f21;--shadow:0 20px 80px rgba(0,0,0,.35)}
     html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#0b1220;-webkit-font-smoothing:antialiased}
-    .container{max-width:980px;margin:28px auto;padding:18px}
-    header{display:flex;align-items:center;gap:16px;padding:18px;border-radius:10px;background:linear-gradient(90deg,rgba(139,26,26,0.06),transparent);box-shadow:0 6px 18px rgba(139,26,26,0.04)}
-    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#c0392b);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
-    h1{margin:0;font-size:1.45rem}
-    .lead{margin:2px 0;color:var(--muted);font-size:.95rem}
-    nav.controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
-    .tab-btn{background:var(--card);border:1px solid rgba(139,26,26,0.06);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:.95rem}
-    .tab-btn[aria-pressed="true"]{outline:2px solid var(--accent);box-shadow:0 10px 24px rgba(139,26,26,0.06)}
-    .layout{display:grid;grid-template-columns:1fr;gap:16px}
-    @media(min-width:880px){.layout{grid-template-columns:1fr 320px}}
-    .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(4,12,26,0.04)}
-    h2{margin:.25rem 0 8px;font-size:1.05rem}
-    .meta{color:var(--muted);font-size:.95rem;margin:.25rem 0}
-    ul{margin:8px 0 0 18px}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:radial-gradient(circle at top left, rgba(231,76,60,.18), transparent 28%), radial-gradient(circle at bottom right, rgba(255,255,255,.04), transparent 20%), var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    .container{max-width:1100px;margin:28px auto;padding:24px}
+    header{position:relative;overflow:hidden;display:grid;grid-template-columns:80px 1fr;gap:18px;padding:24px;border-radius:28px;background:linear-gradient(180deg,rgba(231,76,60,.18),rgba(29,27,35,.92));border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow)}
+    header::before{content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;border-radius:50%;background:rgba(231,76,60,.16);pointer-events:none}
+    .avatar{width:84px;height:84px;border-radius:24px;background:linear-gradient(135deg,var(--accent),#c0392b);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.2rem;z-index:1}
+    h1{margin:0;font-size:2rem;letter-spacing:.02em}
+    .lead{margin:.5rem 0 0;color:var(--muted);font-size:1rem;line-height:1.7;max-width:680px}
+    .hero-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(231,76,60,.12);color:#f5f3f7;font-size:.92rem;border:1px solid rgba(231,76,60,.18)}
+    .chip::before{content:'•';color:var(--accent)}
+    nav.controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 24px}
+    .tab-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:12px 16px;border-radius:16px;cursor:pointer;font-size:.95rem;color:var(--text);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+    .tab-btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.06)}
+    .tab-btn[aria-pressed="true"]{background:linear-gradient(135deg,rgba(231,76,60,.2),rgba(218,44,44,.13));border-color:rgba(231,76,60,.35);box-shadow:0 12px 30px rgba(231,76,60,.2)}
+    .layout{display:grid;grid-template-columns:1.25fr 0.75fr;gap:22px}
+    @media(max-width:980px){.layout{grid-template-columns:1fr}}
+    .card{background:var(--card);padding:24px;border-radius:24px;border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow)}
+    h2{margin:.25rem 0 14px;font-size:1.15rem;letter-spacing:.01em}
+    .meta{color:var(--muted);font-size:.95rem;margin:.65rem 0}
+    ul{margin:12px 0 0 20px;color:var(--text);line-height:1.7}
     a{color:var(--accent)}
-    .contact-row{display:flex;flex-direction:column;gap:6px}
+    .contact-row{display:flex;flex-direction:column;gap:10px}
+    .project-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    @media(max-width:760px){.project-list{grid-template-columns:1fr}}
+    .project-card{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);box-shadow:0 18px 40px rgba(0,0,0,.15)}
+    .project-card h3{margin:0;font-size:1rem;color:#fff}
+    .project-card p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.7}
+    .project-tag{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(231,76,60,.12);color:var(--text);font-size:.82rem;letter-spacing:.02em}
+    .docs-list{display:grid;gap:14px}
+    .doc-item{display:flex;justify-content:space-between;gap:12px;padding:16px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .doc-item span{color:var(--text)}
+    .doc-item small{color:var(--muted)}
+    .about-content p{margin:0 0 16px;line-height:1.85;color:var(--text)}
+    .download-pdf a{color:var(--accent);text-decoration:none;font-weight:600}
+    .download-pdf a:hover{text-decoration:underline}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
     @media print{nav.controls, .download-pdf{display:none} body{background:#fff}}
   </style>
 </head>
 <body>
   <div class="container">
-    
+
     <header>
       <div class="avatar" aria-hidden="true">KV</div>
       <div>
         <h1 id="pageTitle">Kush Vapiwala</h1>
-        <div class="lead">High school network engineering student — Dublin, CA • kushvapiwala@gmail.com • +1 925-336-2012</div>
+        <div class="lead">High school network engineering student focusing on computer networking, cybersecurity, and STEM innovation.</div>
+        <div class="hero-chips">
+          <span class="chip">CCNA Certified</span>
+          <span class="chip">Network Engineering</span>
+          <span class="chip">Cybersecurity</span>
+        </div>
       </div>
     </header>
 
@@ -118,14 +141,30 @@
         <section id="projects" class="card" role="region" aria-labelledby="label-projects" hidden>
           <h2 id="label-projects">Projects</h2>
           <div class="project-list" aria-live="polite">
-            <!-- Add your projects here: cards, links, screenshots, or short descriptions -->
+            <article class="project-card">
+              <h3>Network Lab Dashboard</h3>
+              <p>A polished dashboard concept for tracking network status, topology health, and security events in real time.</p>
+              <span class="project-tag">Networking</span>
+            </article>
+            <article class="project-card">
+              <h3>Security Learning Hub</h3>
+              <p>Design notes for a study hub that highlights cybersecurity concepts, certifications, and practical labs.</p>
+              <span class="project-tag">Cybersecurity</span>
+            </article>
           </div>
         </section>
 
         <section id="project-docs" class="card" role="region" aria-labelledby="label-project-docs" hidden>
           <h2 id="label-project-docs">Project Documentation</h2>
           <div class="docs-list">
-            <!-- Add documentation links, READMEs, diagrams, and changelogs here -->
+            <div class="doc-item">
+              <span>Network Architecture Notes</span>
+              <small>Coming soon</small>
+            </div>
+            <div class="doc-item">
+              <span>CCNA Study Summary</span>
+              <small>Coming soon</small>
+            </div>
           </div>
         </section>
 
