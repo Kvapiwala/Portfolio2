@@ -46,6 +46,9 @@
       <button class="tab-btn" role="tab" aria-pressed="false" data-target="certs">Certifications</button>
       <button class="tab-btn" role="tab" aria-pressed="false" data-target="volunteer">Volunteering</button>
       <button class="tab-btn" role="tab" aria-pressed="false" data-target="hobbies">Hobbies</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="projects">Projects</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="project-docs">Project Docs</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="about">About</button>
       <button class="tab-btn" role="tab" aria-pressed="false" data-target="contact">Contact</button>
     </nav>
 
@@ -110,9 +113,30 @@
             <li>Tennis — recreational</li>
           </ul>
         </section>
+
+        <section id="projects" class="card" role="region" aria-labelledby="label-projects" hidden>
+          <h2 id="label-projects">Projects</h2>
+          <div class="project-list" aria-live="polite">
+            <!-- Add your projects here: cards, links, screenshots, or short descriptions -->
+          </div>
+        </section>
+
+        <section id="project-docs" class="card" role="region" aria-labelledby="label-project-docs" hidden>
+          <h2 id="label-project-docs">Project Documentation</h2>
+          <div class="docs-list">
+            <!-- Add documentation links, READMEs, diagrams, and changelogs here -->
+          </div>
+        </section>
+
+        <section id="about" class="card" role="region" aria-labelledby="label-about" hidden>
+          <h2 id="label-about">About Me</h2>
+          <div class="about-content">
+            <!-- Add your about/bio content, social links, and personal statement here -->
+          </div>
+        </section>
       </main>
 
-      <aside class="card" role="region" aria-labelledby="label-contact">
+      <aside id="contact" class="card" role="region" aria-labelledby="label-contact">
         <h2 id="label-contact">Contact</h2>
         <div class="contact-row">
           <div class="meta">Email: <a href="mailto:kushvapiwala@gmail.com">kushvapiwala@gmail.com</a></div>
@@ -131,16 +155,24 @@
   <script>
     (function(){
       const buttons = Array.from(document.querySelectorAll('.tab-btn'));
-      const regions = buttons.reduce((acc, b) => (acc[b.dataset.target] = document.getElementById(b.dataset.target), acc), {});
-      function show(id, updateHash=true){
-        Object.keys(regions).forEach(key=>{
+      const regions = buttons.reduce((acc, b) => {
+        const id = b.dataset.target;
+        const el = document.getElementById(id);
+        if (el) acc[id] = el;
+        return acc;
+      }, {});
+
+      function show(id, updateHash = true){
+        if (!regions[id]) return; // gracefully ignore unknown targets
+        Object.keys(regions).forEach(key => {
           const el = regions[key];
-          const btn = buttons.find(b=>b.dataset.target===key);
-          const active = key===id;
-          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-          if(active){ el.removeAttribute('hidden'); btn.focus(); } else { el.setAttribute('hidden',''); }
+          const btn = buttons.find(b => b.dataset.target === key);
+          const active = key === id;
+          if (btn) btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+          if (!el) return;
+          if (active) { el.removeAttribute('hidden'); btn?.focus(); } else { el.setAttribute('hidden',''); }
         });
-        if(updateHash) history.replaceState(null,'', '#'+id);
+        if (updateHash) history.replaceState(null, '', '#'+id);
       }
       buttons.forEach((btn, idx)=>{
         btn.addEventListener('click', ()=> show(btn.dataset.target));
