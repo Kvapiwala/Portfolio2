@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kush Vapiwala — Portfolio / Resume</title>
+  <style>
+    :root{--accent:#0b63ff;--bg:#f6f8fb;--card:#fff;--muted:#5b6470}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#0b1220;-webkit-font-smoothing:antialiased}
+    .container{max-width:980px;margin:28px auto;padding:18px}
+    header{display:flex;align-items:center;gap:16px;padding:18px;border-radius:10px;background:linear-gradient(90deg,rgba(11,99,255,0.06),transparent);box-shadow:0 6px 18px rgba(11,99,255,0.04)}
+    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#3aa0ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    h1{margin:0;font-size:1.45rem}
+    .lead{margin:2px 0;color:var(--muted);font-size:.95rem}
+    nav.controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+    .tab-btn{background:var(--card);border:1px solid rgba(11,99,255,0.06);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:.95rem}
+    .tab-btn[aria-pressed="true"]{outline:2px solid var(--accent);box-shadow:0 10px 24px rgba(11,99,255,0.06)}
+    .layout{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:880px){.layout{grid-template-columns:1fr 320px}}
+    .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(4,12,26,0.04)}
+    h2{margin:.25rem 0 8px;font-size:1.05rem}
+    .meta{color:var(--muted);font-size:.95rem;margin:.25rem 0}
+    ul{margin:8px 0 0 18px}
+    a{color:var(--accent)}
+    .contact-row{display:flex;flex-direction:column;gap:6px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+    @media print{nav.controls, .download-pdf{display:none} body{background:#fff}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar" aria-hidden="true">KV</div>
+      <div>
+        <h1 id="pageTitle">Kush Vapiwala</h1>
+        <div class="lead">High school network engineering student — Dublin, CA • kushvapiwala@gmail.com • +1 925-336-2012</div>
+      </div>
+    </header>
+
+    <nav class="controls" role="tablist" aria-label="Resume sections">
+      <button class="tab-btn" role="tab" aria-pressed="true" data-target="summary">Summary</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="achievements">Achievements</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="education">Education</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="skills">Technical Skills</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="certs">Certifications</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="volunteer">Volunteering</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="hobbies">Hobbies</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="projects">Projects</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="project-docs">Project Docs</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="about">About</button>
+      <button class="tab-btn" role="tab" aria-pressed="false" data-target="contact">Contact</button>
+    </nav>
+
+    <div class="layout">
+      <main>
+        <section id="summary" class="card" role="region" aria-labelledby="label-summary">
+          <h2 id="label-summary">Professional summary</h2>
+          <p>Motivated and enthusiastic high school network engineering student with foundational knowledge of networking concepts. Seeking an internship in a corporate environment to gain hands-on experience and further develop technical, problem-solving, and professional skills.</p>
+          <p class="meta">Location: Dublin, CA 94568</p>
+        </section>
+
+        <section id="achievements" class="card" role="region" aria-labelledby="label-achievements" hidden>
+          <h2 id="label-achievements">Major achievements & awards</h2>
+          <ul>
+            <li><strong>Cisco Certified Network Associate (CCNA)</strong> — Certificate ID: CSCO14953453 (Date Certified: Dec 3, 2025)</li>
+            <li><strong>Sewa International Volunteering</strong> — Gold Service Award</li>
+          </ul>
+        </section>
+
+        <section id="education" class="card" role="region" aria-labelledby="label-education" hidden>
+          <h2 id="label-education">Education</h2>
+          <p class="meta">Emerald High School — Junior (2023–present)</p>
+          <ul>
+            <li>GPA: 3.87 (Unweighted) | 4.07 (Weighted)</li>
+            <li>Relevant coursework: AP Calculus AB, Calculus BC, Computer Science Principles, Computer Science Applications, Chemistry</li>
+            <li>Honors: Chemistry, Principles of Engineering</li>
+            <li>Clubs: Computer Networking Club (President), Aerohacks, Indian Student Association</li>
+            <li>Computer Networking Club: https://www.instagram.com/EHScomputer_networking</li>
+          </ul>
+        </section>
+
+        <section id="skills" class="card" role="region" aria-labelledby="label-skills" hidden>
+          <h2 id="label-skills">Technical skills</h2>
+          <ul>
+            <li>Networking: Cisco 200-301 Networking Fundamentals — Automation & Programmability, Network Access, IP Connectivity, IP Services, Security Fundamentals</li>
+            <li>Hands-on: Configuring Cisco devices using Packet Tracer</li>
+            <li>Programming: Java, Python, HTML</li>
+          </ul>
+        </section>
+
+        <section id="certs" class="card" role="region" aria-labelledby="label-certs" hidden>
+          <h2 id="label-certs">Certifications</h2>
+          <ul>
+            <li>CCNA — Cisco (CSCO14953453) — Dec 3, 2025</li>
+          </ul>
+        </section>
+
+        <section id="volunteer" class="card" role="region" aria-labelledby="label-volunteer" hidden>
+          <h2 id="label-volunteer">Volunteering</h2>
+          <ul>
+            <li>Completed 103 hours of volunteering within one year</li>
+            <li>45 hours through ASPIRE program (teaching underprivileged elementary school students)</li>
+            <li>Activities: food pantries, temples, farms, marathons, frontline service</li>
+          </ul>
+        </section>
+
+        <section id="hobbies" class="card" role="region" aria-labelledby="label-hobbies" hidden>
+          <h2 id="label-hobbies">Hobbies</h2>
+          <ul>
+            <li>Aviation & Aeronautics — flight physics and aircraft engineering (250+ hours flight simulator)</li>
+            <li>Endurance cycling — regular long-distance rides (50+ miles)</li>
+            <li>Tennis — recreational</li>
+          </ul>
+        </section>
+
+        <section id="projects" class="card" role="region" aria-labelledby="label-projects" hidden>
+          <h2 id="label-projects">Projects</h2>
+          <div class="project-list" aria-live="polite">
+            <!-- Add your projects here: cards, links, screenshots, or short descriptions -->
+          </div>
+        </section>
+
+        <section id="project-docs" class="card" role="region" aria-labelledby="label-project-docs" hidden>
+          <h2 id="label-project-docs">Project Documentation</h2>
+          <div class="docs-list">
+            <!-- Add documentation links, READMEs, diagrams, and changelogs here -->
+          </div>
+        </section>
+
+        <section id="about" class="card" role="region" aria-labelledby="label-about" hidden>
+          <h2 id="label-about">About Me</h2>
+          <div class="about-content">
+            <!-- Add your about/bio content, social links, and personal statement here -->
+          </div>
+        </section>
+      </main>
+
+      <aside id="contact" class="card" role="region" aria-labelledby="label-contact">
+        <h2 id="label-contact">Contact</h2>
+        <div class="contact-row">
+          <div class="meta">Email: <a href="mailto:kushvapiwala@gmail.com">kushvapiwala@gmail.com</a></div>
+          <div class="meta">Phone: +1 925-336-2012</div>
+          <div class="meta">Location: Dublin, CA 94568</div>
+          <div class="meta">GitHub: <a href="https://github.com/Kvapiwala" target="_blank" rel="noopener">github.com/Kvapiwala</a></div>
+          <div class="meta">LinkedIn: <a href="https://www.linkedin.com/in/kush-vapiwala-038794377/" target="_blank" rel="noopener">linkedin.com/in/kush-vapiwala-038794377</a></div>
+          <div class="meta">Instagram (club): <a href="https://www.instagram.com/EHScomputer_networking" target="_blank" rel="noopener">EHScomputer_networking</a></div>
+        </div>
+
+        <p style="margin-top:12px" class="download-pdf"><a href="#" id="downloadPdf">Print / Save as PDF</a></p>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const buttons = Array.from(document.querySelectorAll('.tab-btn'));
+      const regions = buttons.reduce((acc, b) => {
+        const id = b.dataset.target;
+        const el = document.getElementById(id);
+        if (el) acc[id] = el;
+        return acc;
+      }, {});
+
+      function show(id, updateHash = true){
+        if (!regions[id]) return; // gracefully ignore unknown targets
+        Object.keys(regions).forEach(key => {
+          const el = regions[key];
+          const btn = buttons.find(b => b.dataset.target === key);
+          const active = key === id;
+          if (btn) btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+          if (!el) return;
+          if (active) { el.removeAttribute('hidden'); btn?.focus(); } else { el.setAttribute('hidden',''); }
+        });
+        if (updateHash) history.replaceState(null, '', '#'+id);
+      }
+      buttons.forEach((btn, idx)=>{
+        btn.addEventListener('click', ()=> show(btn.dataset.target));
+        btn.addEventListener('keydown', e=>{
+          if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp','Home','End'].includes(e.key)){
+            e.preventDefault();
+            let next = idx;
+            if(e.key==='ArrowRight' || e.key==='ArrowDown') next = (idx+1)%buttons.length;
+            if(e.key==='ArrowLeft' || e.key==='ArrowUp') next = (idx-1+buttons.length)%buttons.length;
+            if(e.key==='Home') next = 0;
+            if(e.key==='End') next = buttons.length-1;
+            buttons[next].click();
+          }
+        });
+      });
+      const initial = location.hash ? location.hash.replace('#','') : 'summary';
+      if(regions[initial]) show(initial, false); else show('summary', false);
+
+      document.getElementById('downloadPdf').addEventListener('click', e=>{
+        e.preventDefault();
+        window.print();
+      });
+    })();
+  </script>
+</body>
+</html>
