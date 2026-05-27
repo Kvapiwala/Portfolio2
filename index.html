@@ -199,25 +199,32 @@
   <script>
     (function(){
       const buttons = Array.from(document.querySelectorAll('.tab-btn'));
-      const regions = buttons.reduce((acc, b) => {
-        const id = b.dataset.target;
-        const el = document.getElementById(id);
-        if (el) acc[id] = el;
-        return acc;
-      }, {});
+      const allIds = ['summary','achievements','education','skills','certs','volunteer','hobbies','projects','project-docs','about','contact'];
+      const sections = allIds.reduce((acc,id)=>{ const el = document.getElementById(id); if(el) acc[id]=el; return acc; }, {});
+
+      // Sections that should appear together under the single "Resume" button
+      const resumeGroup = ['summary','achievements','education','skills','certs','volunteer','hobbies'];
 
       function show(id, updateHash = true){
-        if (!regions[id]) return; // gracefully ignore unknown targets
-        Object.keys(regions).forEach(key => {
-          const el = regions[key];
+        // when showing resume, reveal the whole group; otherwise show the single target
+        Object.keys(sections).forEach(key => {
+          const el = sections[key];
           const btn = buttons.find(b => b.dataset.target === key);
-          const active = key === id;
+          let active = false;
+          if (id === 'resume') active = resumeGroup.includes(key);
+          else active = key === id;
           if (btn) btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-          if (!el) return;
-          if (active) { el.removeAttribute('hidden'); btn?.focus(); } else { el.setAttribute('hidden',''); }
+          if (active) el.removeAttribute('hidden'); else el.setAttribute('hidden','');
         });
         if (updateHash) history.replaceState(null, '', '#'+id);
+        // ensure the top-level `resume` button gets correct pressed state
+        const resumeBtn = buttons.find(b => b.dataset.target === 'resume');
+        if (id === 'resume') { if (resumeBtn) resumeBtn.setAttribute('aria-pressed', 'true'); }
+        else { if (resumeBtn) resumeBtn.setAttribute('aria-pressed', 'false'); }
+        const activeBtn = buttons.find(b => b.dataset.target === id);
+        if (activeBtn) activeBtn.focus();
       }
+
       buttons.forEach((btn, idx)=>{
         btn.addEventListener('click', ()=> show(btn.dataset.target));
         btn.addEventListener('keydown', e=>{
@@ -232,8 +239,9 @@
           }
         });
       });
-      const initial = location.hash ? location.hash.replace('#','') : 'summary';
-      if(regions[initial]) show(initial, false); else show('summary', false);
+
+      const initial = location.hash ? location.hash.replace('#','') : 'about';
+      show(initial, false);
 
       document.getElementById('downloadPdf').addEventListener('click', e=>{
         e.preventDefault();
