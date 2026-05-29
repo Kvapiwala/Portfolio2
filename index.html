@@ -42,6 +42,9 @@
     .doc-item{display:flex;justify-content:space-between;gap:12px;padding:16px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
     .doc-item span{color:var(--text)}
     .doc-item small{color:var(--muted)}
+    /* Project docs media */
+    .doc-media{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .doc-media img{max-width:220px;border-radius:12px;border:1px solid rgba(255,255,255,.06);display:block;object-fit:cover}
     .about-content p{margin:0 0 16px;line-height:1.85;color:var(--text)}
     .download-pdf a{color:var(--accent);text-decoration:none;font-weight:600}
     .download-pdf a:hover{text-decoration:underline}
@@ -156,15 +159,24 @@
         <section id="project-docs" class="card" role="region" aria-labelledby="label-project-docs" hidden>
           <h2 id="label-project-docs">Project Documentation</h2>
           <div class="docs-list">
-            <div class="doc-item">
+            <div class="doc-item" style="flex-direction:column;align-items:flex-start">
               <span><strong>CCNA Skills & Hands-On Labs</strong></span>
               <small>
                 Completed Cisco 200-301 training in Automation & Programmability, Network Access, IP Connectivity, IP Services, and Security Fundamentals. I configured virtual Cisco devices in Packet Tracer, practiced subnetting, VLAN segmentation, routing protocols, ACLs, NAT, and basic QoS. This work built practical understanding of packet-forwarding, network troubleshooting, and secure device configuration, which is directly relevant to modern enterprise and carrier network operations. At age 16, this places my Cisco networking knowledge at or above the level expected of many professionals. View the CCNA badge on Credly: <a href="https://www.credly.com/badges/5555308a-c1aa-4c58-bfbb-41c27b31cb18/public_url" target="_blank" rel="noopener">Credly verification</a>.
               </small>
+              <div class="doc-media" aria-hidden="false">
+                <img src="ccna_600.png" alt="CCNA badge" />
+                <img src="rtaImage.png" alt="Packet Tracer topology screenshot" />
+              </div>
             </div>
-            <div class="doc-item">
+
+            <div class="doc-item" style="flex-direction:column;align-items:flex-start">
               <span><strong>Java Dogfight Story Game Documentation</strong></span>
               <small>A Java console application that implements a choice-driven narrative engine using nested if/else conditionals, boolean logic, and state-based branching. The player makes decisions during a Top Gun-style fighter jet engagement, and the program evaluates each choice to advance the story, alter variables, and produce multiple endings. This project emphasizes algorithmic control flow, input parsing, outcome management, and the structure of interactive text-based game logic. Repo: <a href="https://github.com/Aero-ComSci/1-3-8-choose-your-path-Kvapiwala" target="_blank" rel="noopener">github.com/Aero-ComSci/1-3-8-choose-your-path-Kvapiwala</a>.</small>
+              <div class="doc-media" aria-hidden="false">
+                <img src="intro-1748556304.jpg" alt="" />
+                <img src="Screenshot 2026-05-29 134954.png" alt="Java game screenshot" />
+              </div>
             </div>
           </div>
         </section>
@@ -199,42 +211,45 @@
   <script>
     (function(){
       const buttons = Array.from(document.querySelectorAll('.tab-btn'));
-      const allIds = ['summary','achievements','education','skills','certs','volunteer','hobbies','projects','project-docs','about','contact'];
-      const sections = allIds.reduce((acc,id)=>{ const el = document.getElementById(id); if(el) acc[id]=el; return acc; }, {});
+      const allIds = ['summary','achievements','education','skills','certs','volunteer','hobbies','projects','project-docs','about','contact','resume'];
+      const sections = allIds.reduce((acc, id) => {
+        const el = document.getElementById(id);
+        if (el) acc[id] = el;
+        return acc;
+      }, {});
 
       // Sections that should appear together under the single "Resume" button
       const resumeGroup = ['summary','achievements','education','skills','certs','volunteer','hobbies'];
 
       function show(id, updateHash = true){
-        // when showing resume, reveal the whole group; otherwise show the single target
         Object.keys(sections).forEach(key => {
           const el = sections[key];
           const btn = buttons.find(b => b.dataset.target === key);
-          let active = false;
-          if (id === 'resume') active = resumeGroup.includes(key);
-          else active = key === id;
+          const active = (id === 'resume') ? resumeGroup.includes(key) : (key === id);
           if (btn) btn.setAttribute('aria-pressed', active ? 'true' : 'false');
           if (active) el.removeAttribute('hidden'); else el.setAttribute('hidden','');
         });
-        if (updateHash) history.replaceState(null, '', '#'+id);
+
         // ensure the top-level `resume` button gets correct pressed state
         const resumeBtn = buttons.find(b => b.dataset.target === 'resume');
-        if (id === 'resume') { if (resumeBtn) resumeBtn.setAttribute('aria-pressed', 'true'); }
-        else { if (resumeBtn) resumeBtn.setAttribute('aria-pressed', 'false'); }
+        if (resumeBtn) resumeBtn.setAttribute('aria-pressed', id === 'resume' ? 'true' : 'false');
+
+        if (updateHash) history.replaceState(null, '', '#'+id);
+
         const activeBtn = buttons.find(b => b.dataset.target === id);
         if (activeBtn) activeBtn.focus();
       }
 
-      buttons.forEach((btn, idx)=>{
-        btn.addEventListener('click', ()=> show(btn.dataset.target));
-        btn.addEventListener('keydown', e=>{
-          if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp','Home','End'].includes(e.key)){
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener('click', () => show(btn.dataset.target));
+        btn.addEventListener('keydown', e => {
+          if (['ArrowRight','ArrowDown','ArrowLeft','ArrowUp','Home','End'].includes(e.key)){
             e.preventDefault();
             let next = idx;
-            if(e.key==='ArrowRight' || e.key==='ArrowDown') next = (idx+1)%buttons.length;
-            if(e.key==='ArrowLeft' || e.key==='ArrowUp') next = (idx-1+buttons.length)%buttons.length;
-            if(e.key==='Home') next = 0;
-            if(e.key==='End') next = buttons.length-1;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % buttons.length;
+            if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   next = (idx - 1 + buttons.length) % buttons.length;
+            if (e.key === 'Home') next = 0;
+            if (e.key === 'End')  next = buttons.length - 1;
             buttons[next].click();
           }
         });
@@ -243,7 +258,8 @@
       const initial = location.hash ? location.hash.replace('#','') : 'about';
       show(initial, false);
 
-      document.getElementById('downloadPdf').addEventListener('click', e=>{
+      const download = document.getElementById('downloadPdf');
+      if (download) download.addEventListener('click', e => {
         e.preventDefault();
         window.print();
       });
